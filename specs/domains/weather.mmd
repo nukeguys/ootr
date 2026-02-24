@@ -1,0 +1,19 @@
+erDiagram
+    Location ||--|| WeatherData : triggers
+    Location {
+        number latitude
+        number longitude
+    }
+    WeatherData {
+        number temperature
+        number feelsLike
+        number precipitation
+        boolean isSnow
+        number windSpeed
+        integer humidity
+        string condition
+        number uvIndex
+        boolean isDay
+        string locationName
+        datetime updatedAt
+    }

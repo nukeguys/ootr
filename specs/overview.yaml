@@ -1,0 +1,23 @@
+domains:
+  - name: weather
+    description: "GPS 기반 현재 날씨 정보 조회"
+    core_entities: [Location, WeatherData]
+    status: confirmed
+    priority: 1
+
+  - name: recommendation
+    description: "날씨 조건에 따른 러닝 복장 추천"
+    core_entities: [TemperatureZone, OutfitSet, Recommendation]
+    status: confirmed
+    priority: 1
+
+  - name: app
+    description: "PWA, 컬러모드, 오프라인 캐시 등 앱 공통 기능"
+    core_entities: [AppState]
+    status: confirmed
+    priority: 1
+
+domain_connections:
+  - { from: weather.WeatherData, to: recommendation.Recommendation, rel: triggers }
+  - { from: recommendation.TemperatureZone, to: recommendation.OutfitSet, rel: has }
+  - { from: recommendation.Recommendation, to: recommendation.OutfitSet, rel: references }

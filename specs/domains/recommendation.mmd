@@ -1,0 +1,26 @@
+erDiagram
+    TemperatureZoneConfig ||--o{ TemperatureZone : contains
+    TemperatureZone ||--|| OutfitSet : has
+    Recommendation }o--|| OutfitSet : references
+    TemperatureZone {
+        string id
+        string label
+        number minTemp
+        number maxTemp
+        boolean isExtremeWarning
+    }
+    OutfitSet {
+        string top
+        string bottom
+        string[] accessories
+    }
+    Recommendation {
+        OutfitSet outfitSet
+        string reason
+        string[] warnings
+        boolean isExtremeWeather
+        datetime createdAt
+    }
+    TemperatureZoneConfig {
+        TemperatureZone[] zones
+    }

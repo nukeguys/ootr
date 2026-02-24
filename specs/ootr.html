@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OOTR | Recommended Outfit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#000000",
+                "accent": "#666666",
+                "background": "#ffffff",
+              },
+              fontFamily: {
+                "sans": ["Inter", "sans-serif"],
+                "serif": ["Playfair Display", "serif"]
+              },
+            },
+          },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+          body {
+            @apply bg-background text-primary antialiased min-h-screen overflow-y-auto;
+          }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center">
+<div class="w-full max-w-4xl mx-auto flex flex-col px-6 py-8 md:px-12 md:py-16 min-h-screen">
+<header class="w-full">
+<div class="flex items-center justify-between mb-8 md:mb-12">
+<div class="flex items-center gap-3">
+<div class="size-2 bg-black rounded-full"></div>
+<h1 class="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase">OOTR</h1>
+</div>
+<button class="text-accent hover:text-black transition-colors">
+<span class="material-symbols-outlined text-[20px] font-light">refresh</span>
+</button>
+</div>
+<div class="flex flex-wrap items-end justify-between gap-6 border-b border-gray-100 pb-8">
+<div class="flex items-baseline gap-4">
+<span class="text-5xl md:text-7xl font-extralight tracking-tighter">62°</span>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest font-semibold text-accent">Feels Like</span>
+<span class="text-lg font-light italic">58°</span>
+</div>
+</div>
+<div class="flex gap-8 md:gap-12">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest font-semibold text-accent mb-1">Wind</span>
+<span class="text-sm md:text-base font-light">5 <span class="text-[10px]">mph</span></span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest font-semibold text-accent mb-1">Precip</span>
+<span class="text-sm md:text-base font-light">0%</span>
+</div>
+<div class="hidden sm:flex flex-col">
+<span class="text-[10px] uppercase tracking-widest font-semibold text-accent mb-1">Conditions</span>
+<span class="text-sm md:text-base font-light">Clear Sky</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col py-10 md:py-14">
+<div class="max-w-2xl w-full">
+<h2 class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold mb-8 opacity-60">
+                    Recommended Outfit
+                </h2>
+<div class="space-y-6 md:space-y-8">
+<div class="group py-2">
+<span class="text-[10px] uppercase tracking-[0.2em] text-accent font-bold block mb-2 opacity-50">Top</span>
+<h3 class="font-serif italic text-2xl md:text-4xl font-normal leading-tight tracking-tight text-primary">
+                            Long-sleeve technical base layer
+                        </h3>
+</div>
+<div class="group py-2">
+<span class="text-[10px] uppercase tracking-[0.2em] text-accent font-bold block mb-2 opacity-50">Bottom</span>
+<h3 class="font-serif italic text-2xl md:text-4xl font-normal leading-tight tracking-tight text-primary">
+                            5" Unlined performance shorts
+                        </h3>
+</div>
+<div class="group py-2">
+<span class="text-[10px] uppercase tracking-[0.2em] text-accent font-bold block mb-2 opacity-50">Accessories</span>
+<h3 class="font-serif italic text-2xl md:text-4xl font-normal leading-tight tracking-tight text-primary">
+                            Technical hat &amp; anti-blister socks
+                        </h3>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full space-y-10 md:space-y-14 mt-auto">
+<div class="max-w-xl">
+<h4 class="text-[10px] uppercase tracking-widest font-bold text-accent mb-3 flex items-center gap-2">
+                    Logic <span class="h-[1px] w-8 bg-gray-200"></span>
+</h4>
+<p class="text-sm md:text-base text-accent font-light leading-relaxed">
+                    The mild temperature combined with low humidity means you'll warm up quickly. The long-sleeve layer protects from the initial 58° chill without causing overheating once your heart rate climbs.
+                </p>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-gray-100 pt-8 pb-4">
+<p class="font-serif italic text-accent text-sm md:text-base">"There is no bad weather, only bad clothing."</p>
+<p class="text-[9px] md:text-[10px] font-bold tracking-[0.4em] uppercase text-gray-300">Outfit Of The Run</p>
+</div>
+</footer>
+</div>
+<div class="fixed inset-0 -z-10 pointer-events-none opacity-40">
+<div class="absolute top-0 right-0 w-[30vw] h-[30vw] bg-gray-50 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-0 left-0 w-[20vw] h-[20vw] bg-gray-50 blur-[80px] rounded-full"></div>
+</div>
+
+</body></html>
