@@ -6,8 +6,8 @@
 
 ```yaml
 trigger:
-  event: "워크플로우 시작 조건"
-  source: "이벤트 출처"
+  event: '워크플로우 시작 조건'
+  source: '이벤트 출처'
 ```
 
 ## 노드 타입: Step
@@ -16,7 +16,7 @@ trigger:
 steps:
   단계명:
     type: 단계유형
-    description: "이 단계가 하는 일"
+    description: '이 단계가 하는 일'
     on_failure: ... # 실패 처리 (선택, 모든 type에 적용 가능)
     # 이하 type별 추가 필드
 ```
@@ -120,7 +120,7 @@ on_failure:
   next: 실패시_이동할_단계 # 선택
   # 또는 미정일 때
   status: TBD
-  candidates: ["재시도 3회", "알림 후 중단", "수동 처리 큐"]
+  candidates: ['재시도 3회', '알림 후 중단', '수동 처리 큐']
 ```
 
 ## 도메인 엔티티 연결 (선택)

@@ -9,7 +9,7 @@ entities:
   엔티티명:
     props: { 속성명: 타입, ... }
     rules: # 제약 조건 배열
-      - "규칙 설명"
+      - '규칙 설명'
     status: confirmed # 생략 시 confirmed
 ```
 
@@ -19,14 +19,14 @@ entities:
 entities:
   User:
     props: { id: string, email: string, isLoggedIn: boolean }
-    rules: ["email unique"]
+    rules: ['email unique']
 
   Review:
     props: { id: string, rating: integer, content: string, createdAt: datetime }
     rules:
-      - "rating: 1..5"
-      - "unique(userId, productId)"
-      - "삭제 불가"
+      - 'rating: 1..5'
+      - 'unique(userId, productId)'
+      - '삭제 불가'
 ```
 
 ## 제약 조건 패턴 (rules 작성 규칙)
@@ -34,30 +34,30 @@ entities:
 **유니크 제약:**
 
 ```yaml
-- "unique(email)" # 단일 필드
-- "unique(userId, productId)" # 복합 필드
+- 'unique(email)' # 단일 필드
+- 'unique(userId, productId)' # 복합 필드
 ```
 
 **범위/크기 제약:**
 
 ```yaml
-- "range(rating, 1, 5)" # 값 범위 (min ~ max)
-- "min(stock, 0)" # 최소값
-- "max(price, 10000000)" # 최대값
-- "length(nickname, 2, 20)" # 문자열 길이 (min ~ max)
+- 'range(rating, 1, 5)' # 값 범위 (min ~ max)
+- 'min(stock, 0)' # 최소값
+- 'max(price, 10000000)' # 최대값
+- 'length(nickname, 2, 20)' # 문자열 길이 (min ~ max)
 ```
 
 **필수/존재 제약:**
 
 ```yaml
-- "required(email)" # 필수 입력
-- "requires(Purchase)" # 전제 조건 (다른 엔티티가 존재해야 함)
+- 'required(email)' # 필수 입력
+- 'requires(Purchase)' # 전제 조건 (다른 엔티티가 존재해야 함)
 ```
 
 **허용값 제약:**
 
 ```yaml
-- "in(role, admin|editor|viewer)" # 허용값 목록 (간단한 경우)
+- 'in(role, admin|editor|viewer)' # 허용값 목록 (간단한 경우)
 ```
 
 > enum이 상태 전이(transitions)까지 필요한 경우는 enums 섹션을 사용한다.
@@ -65,22 +65,22 @@ entities:
 **불변성:**
 
 ```yaml
-- "immutable" # 엔티티 전체 수정/삭제 불가
-- "immutable(email)" # 특정 필드만 수정 불가
+- 'immutable' # 엔티티 전체 수정/삭제 불가
+- 'immutable(email)' # 특정 필드만 수정 불가
 ```
 
 **빈도/횟수 제약:**
 
 ```yaml
-- "limit(user, 5, per_day)" # 사용자당 하루 5회
-- "limit(user+product, 1, total)" # 사용자+상품 조합당 총 1회
+- 'limit(user, 5, per_day)' # 사용자당 하루 5회
+- 'limit(user+product, 1, total)' # 사용자+상품 조합당 총 1회
 ```
 
 **복잡한 비즈니스 규칙 (자연어):**
 
 ```yaml
-- "작성 후 24시간 이내에만 수정 가능"
-- "본인이 작성한 리뷰만 수정 가능"
+- '작성 후 24시간 이내에만 수정 가능'
+- '본인이 작성한 리뷰만 수정 가능'
 ```
 
 > **원칙**: 패턴으로 표현 가능하면 패턴을 사용한다. 자연어는 패턴으로 표현하기 어려운 경우에만 사용한다. 새 패턴이 필요하면 이 목록에 추가하고 기록한다.
@@ -92,12 +92,12 @@ entities:
   Review:
     props: { id: string, rating: integer, content: string, createdAt: datetime }
     rules:
-      - "unique(userId, productId)"
-      - "range(rating, 1, 5)"
-      - "length(content, 1, 2200)"
-      - "required(rating)"
-      - "requires(Purchase)"
-      - "immutable"
+      - 'unique(userId, productId)'
+      - 'range(rating, 1, 5)'
+      - 'length(content, 1, 2200)'
+      - 'required(rating)'
+      - 'requires(Purchase)'
+      - 'immutable'
 ```
 
 ## 속성 타입
@@ -150,7 +150,7 @@ relationships:
     type: 관계명 # 관계 타입 허용 목록에서 선택
     card: 카디널리티 # 1:1, 1:N, N:1, N:M
     on_delete: 삭제정책 # cascade, restrict, set_null (선택)
-    constraint: "추가 제약" # 선택
+    constraint: '추가 제약' # 선택
 ```
 
 예시:

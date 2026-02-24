@@ -23,7 +23,7 @@ entities:
   엔티티명:
     props: { 속성명: 타입, ... }
     rules:
-      - "패턴 또는 자연어"
+      - '패턴 또는 자연어'
 
 relationships:
   - { from: A, to: B, type: 관계타입, card: 카디널리티 }
@@ -54,13 +54,13 @@ has, contains, creates, triggers, belongs_to, references, requires, depends_on
 
 ```yaml
 trigger:
-  event: "시작 조건"
-  source: "출처"
+  event: '시작 조건'
+  source: '출처'
 
 steps:
   단계명:
     type: event | action | decision | parallel | wait | retry | end
-    description: "설명"
+    description: '설명'
     next: 다음단계
 ```
 

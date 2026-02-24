@@ -59,13 +59,13 @@ rating:
 
 ```yaml
 - date: YYYY-MM-DD
-  topic: "결정 주제"
-  decision: "결정 내용"
-  reason: "이유"
+  topic: '결정 주제'
+  decision: '결정 내용'
+  reason: '이유'
   alternatives_rejected:
-    - "기각된 후보: 기각 이유"
+    - '기각된 후보: 기각 이유'
   affects: # 선택
-    - "영향받는 파일/항목"
+    - '영향받는 파일/항목'
 ```
 
 ## 확장 규칙

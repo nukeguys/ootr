@@ -5,11 +5,11 @@
 ```yaml
 domains:
   - name: 도메인명
-    description: "한 줄 설명"
+    description: '한 줄 설명'
     core_entities: [핵심엔티티, ...]
     status: confirmed | TBD | deferred
     priority: 1 # 숫자가 낮을수록 높은 우선순위
-    note: "비고" # 선택
+    note: '비고' # 선택
 
 domain_connections:
   - { from: 도메인.엔티티, to: 도메인.엔티티, rel: 관계명 }
@@ -21,22 +21,22 @@ domain_connections:
 ```yaml
 domains:
   - name: auth
-    description: "회원가입, 로그인, 프로필"
+    description: '회원가입, 로그인, 프로필'
     core_entities: [User, Profile]
     status: confirmed
     priority: 1
 
   - name: content
-    description: "게시물 작성, 피드"
+    description: '게시물 작성, 피드'
     core_entities: [Post, Media]
     status: confirmed
     priority: 1
 
   - name: messaging
-    description: "DM, 채팅"
+    description: 'DM, 채팅'
     core_entities: [Conversation, Message]
     status: deferred
-    note: "MVP 이후"
+    note: 'MVP 이후'
     priority: 3
 
 domain_connections:
