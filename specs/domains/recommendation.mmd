@@ -10,8 +10,8 @@ erDiagram
         boolean isExtremeWarning
     }
     OutfitSet {
-        string top
-        string bottom
+        string[] top
+        string[] bottom
         string[] accessories
     }
     Recommendation {
@@ -19,7 +19,7 @@ erDiagram
         string reason
         string[] warnings
         boolean isExtremeWeather
-        datetime createdAt
+        number createdAt
     }
     TemperatureZoneConfig {
         TemperatureZone[] zones

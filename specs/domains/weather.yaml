@@ -14,33 +14,18 @@ entities:
       precipitation: number
       isSnow: boolean
       windSpeed: number
-      humidity: integer
+      humidity: number
       condition: string
       uvIndex: number
       isDay: boolean
       locationName: string
-      updatedAt: datetime
+      updatedAt: number
     rules:
       - 'WeatherAPI current.json 엔드포인트에서 조회'
       - 'Next.js API Route를 통해 서버 사이드에서 호출 (API 키 보호)'
       - 'API 에러 시 에러 메시지 표시'
-
-enums:
-  Condition:
-    values:
-      [
-        clear,
-        partly_cloudy,
-        cloudy,
-        overcast,
-        mist,
-        fog,
-        rain,
-        snow,
-        sleet,
-        thunder,
-      ]
-    note: 'WeatherAPI condition code에서 매핑'
+      - 'condition은 API 응답 문자열을 그대로 사용'
+      - 'updatedAt은 timestamp(ms) — 화면 표시 시 변환'
 
 relationships:
   - { from: Location, to: WeatherData, type: triggers, card: '1:1' }

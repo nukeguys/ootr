@@ -1,7 +1,9 @@
+import { HomePage } from '@/views/home';
+import { mockWeatherData } from '@/entities/weather';
+import { mockRecommendation } from '@/entities/recommendation';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-4xl font-bold">OOTR</h1>
-    </main>
+    <HomePage weather={mockWeatherData} recommendation={mockRecommendation} />
   );
 }

@@ -1,7 +1,6 @@
 ---
 name: domain-validator
 description: domain YAML 파일의 무결성을 검증할 때 사용. 엔티티 참조 오류, 누락된 관계, 고아 엔티티 등을 탐지
-model: sonnet
 allowed-tools: Bash(python3)
 ---
 

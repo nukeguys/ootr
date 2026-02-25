@@ -1,7 +1,6 @@
 ---
 name: tbd-tracker
 description: 프로젝트의 미정(TBD) 사항을 추적하고 현황을 보여줄 때 사용
-model: sonnet
 allowed-tools: Bash(python3)
 ---
 

@@ -15,11 +15,12 @@ entities:
 
   OutfitSet:
     props:
-      top: string
-      bottom: string
+      top: string[]
+      bottom: string[]
       accessories: string[]
     rules:
       - '상의/하의/액세서리 3가지 카테고리로 구성'
+      - '각 카테고리에 여러 아이템이 있을 수 있으며, UI에서 쉼표(,)로 구분하여 표시'
       - '구간별 기본 복장은 설정 파일에서 정의'
     status: confirmed
 
@@ -29,7 +30,7 @@ entities:
       reason: string
       warnings: string[]
       isExtremeWeather: boolean
-      createdAt: datetime
+      createdAt: number
     rules:
       - '체감온도 구간으로 기본 복장 결정'
       - '바람/강수/습도/자외선/낮밤 등으로 보정'

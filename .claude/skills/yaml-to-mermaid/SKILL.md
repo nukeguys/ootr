@@ -1,7 +1,6 @@
 ---
 name: yaml-to-mermaid
 description: domain YAML 파일에서 Mermaid erDiagram을 자동 생성할 때 사용
-model: sonnet
 allowed-tools: Bash(python3)
 ---
 

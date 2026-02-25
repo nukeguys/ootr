@@ -1,7 +1,6 @@
 ---
 name: plan
 description: 자연어 요구사항을 분석하여 domain YAML과 Gherkin 시나리오를 생성/갱신할 때 사용
-model: sonnet
 allowed-tools: Read, Write, Edit, Glob, Grep, Skill(yaml-spec)
 argument-hint: [요구사항]
 ---
