@@ -1,2 +1,1 @@
-export type { OutfitSet, Recommendation } from './model/types';
-export { mockRecommendation } from './mocks/recommendation';
+export type { WardrobeItem, OutfitSet, Recommendation } from './model/types';

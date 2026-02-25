@@ -1,3 +1,5 @@
+export type { WardrobeItem } from './wardrobe';
+
 export interface OutfitSet {
   top: string[];
   bottom: string[];
