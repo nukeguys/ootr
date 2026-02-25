@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display, Noto_Sans_KR } from 'next/font/google';
 import { ColorModeProvider } from '@/features/color-mode';
+import { QueryProvider } from '@/shared/lib/QueryProvider';
 import './globals.css';
 
 const inter = Inter({
@@ -56,7 +57,9 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: FOUC_SCRIPT }} />
       </head>
       <body className="flex flex-col items-center antialiased">
-        <ColorModeProvider>{children}</ColorModeProvider>
+        <QueryProvider>
+          <ColorModeProvider>{children}</ColorModeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

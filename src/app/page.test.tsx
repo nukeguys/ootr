@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Home from './page';
+import { mockWeatherData } from '@/entities/weather';
 
 vi.mock('@/features/color-mode', () => ({
   ColorModeProvider: ({ children }: { children: React.ReactNode }) => (
@@ -8,6 +9,15 @@ vi.mock('@/features/color-mode', () => ({
   ),
   ColorModeToggle: () => <button aria-label="Switch to dark mode" />,
   useColorMode: () => ({ colorMode: 'light', toggleColorMode: vi.fn() }),
+}));
+
+vi.mock('@/features/get-weather', () => ({
+  useWeather: () => ({
+    weather: mockWeatherData,
+    isLoading: false,
+    error: null,
+    refetch: vi.fn(),
+  }),
 }));
 
 describe('Home', () => {

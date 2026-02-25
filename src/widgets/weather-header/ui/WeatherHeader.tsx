@@ -4,12 +4,13 @@ import { WeatherSummary } from './WeatherSummary';
 
 interface WeatherHeaderProps {
   weather: WeatherData;
+  onRefresh?: () => void;
 }
 
-export function WeatherHeader({ weather }: WeatherHeaderProps) {
+export function WeatherHeader({ weather, onRefresh }: WeatherHeaderProps) {
   return (
     <header className="w-full">
-      <LogoBar />
+      <LogoBar onRefresh={onRefresh} />
       <WeatherSummary weather={weather} />
     </header>
   );

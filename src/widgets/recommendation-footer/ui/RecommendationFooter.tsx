@@ -1,4 +1,4 @@
-import { RecommendationLogic } from './RecommendationLogic';
+import { RecommendationComment } from './RecommendationComment';
 import { FooterBar } from './FooterBar';
 
 interface RecommendationFooterProps {
@@ -8,7 +8,7 @@ interface RecommendationFooterProps {
 export function RecommendationFooter({ reason }: RecommendationFooterProps) {
   return (
     <footer className="w-full space-y-10 md:space-y-14 mt-auto">
-      <RecommendationLogic reason={reason} />
+      <RecommendationComment reason={reason} />
       <FooterBar />
     </footer>
   );

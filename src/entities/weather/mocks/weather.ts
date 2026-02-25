@@ -5,7 +5,7 @@ export const mockWeatherData: WeatherData = {
   feelsLike: 14,
   precipitation: 0,
   isSnow: false,
-  windSpeed: 8,
+  windSpeed: 2,
   humidity: 45,
   condition: 'Clear Sky',
   uvIndex: 3,

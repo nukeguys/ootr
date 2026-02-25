@@ -1,7 +1,11 @@
 import { RefreshIcon } from '@/shared/ui/icons/RefreshIcon';
 import { ColorModeToggle } from '@/features/color-mode';
 
-export function LogoBar() {
+interface LogoBarProps {
+  onRefresh?: () => void;
+}
+
+export function LogoBar({ onRefresh }: LogoBarProps) {
   return (
     <div className="flex items-center justify-between mb-8 md:mb-12">
       <div className="flex items-center gap-3">
@@ -14,6 +18,7 @@ export function LogoBar() {
         <button
           className="text-accent hover:text-foreground transition-colors"
           aria-label="Refresh"
+          onClick={onRefresh}
         >
           <RefreshIcon className="size-[18px]" />
         </button>

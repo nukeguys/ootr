@@ -26,7 +26,7 @@ export function WeatherSummary({ weather }: WeatherSummaryProps) {
             Wind
           </span>
           <span className="text-sm md:text-base font-light">
-            {weather.windSpeed} <span className="text-[10px]">km/h</span>
+            {weather.windSpeed} <span className="text-[10px]">m/s</span>
           </span>
         </div>
         <div className="flex flex-col">
@@ -34,7 +34,7 @@ export function WeatherSummary({ weather }: WeatherSummaryProps) {
             Precip
           </span>
           <span className="text-sm md:text-base font-light">
-            {weather.precipitation}%
+            {weather.precipitation} <span className="text-[10px]">mm</span>
           </span>
         </div>
         <div className="flex flex-col">
