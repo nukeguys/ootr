@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display, Noto_Sans_KR } from 'next/font/google';
 import { ColorModeProvider } from '@/features/color-mode';
 import { QueryProvider } from '@/shared/lib/QueryProvider';
+import { ServiceWorkerRegister } from '@/shared/ui/ServiceWorkerRegister';
 import './globals.css';
 
 const inter = Inter({
@@ -20,9 +21,25 @@ const notoSansKR = Noto_Sans_KR({
   weight: ['300', '400', '500', '700'],
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
+};
+
 export const metadata: Metadata = {
   title: 'OOTR',
   description: '오늘 뭐 입지? - 날씨 기반 러닝 복장 추천 서비스',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'OOTR',
+  },
+  icons: {
+    icon: '/icons/icon-192x192.png',
+    apple: '/icons/apple-touch-icon.png',
+  },
 };
 
 const FOUC_SCRIPT = `
@@ -60,6 +77,7 @@ export default function RootLayout({
         <QueryProvider>
           <ColorModeProvider>{children}</ColorModeProvider>
         </QueryProvider>
+        <ServiceWorkerRegister />
       </body>
     </html>
   );
