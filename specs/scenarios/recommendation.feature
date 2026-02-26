@@ -82,6 +82,11 @@ Feature: 러닝 복장 추천 엔진
     When 복장 추천이 생성된다
     Then 하의는 "긴바지"가 추천된다
 
+  Scenario: -4 ≤ feelsLike < 10 — 긴바지
+    And 체감온도가 5°C이고 바람이 없다
+    When 복장 추천이 생성된다
+    Then 하의는 "긴바지"가 추천된다
+
   Scenario: feelsLike < -4 — 기모 바지
     And 체감온도가 -5°C이다
     When 복장 추천이 생성된다
@@ -129,6 +134,13 @@ Feature: 러닝 복장 추천 엔진
     And 체감온도가 15°C이다
     When 복장 추천이 생성된다
     Then 추천 이유가 자연어로 함께 표시된다
+
+  # OutfitSet UI 표시
+
+  Scenario: OutfitSet 아이템이 쉼표로 구분되어 표시된다
+    And 체감온도가 15°C이고 풍속이 7m/s이다
+    When 복장 추천이 생성된다
+    Then 상의는 "긴팔 티셔츠, 바람막이" 형태로 쉼표 구분되어 표시된다
 
   # 극한 날씨 경고
 

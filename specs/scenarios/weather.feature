@@ -29,3 +29,9 @@ Feature: 날씨 정보 조회
     And WeatherAPI가 응답하지 않는다
     When 페이지에 접속한다
     Then 에러 메시지가 표시된다
+
+  Scenario: 서버 사이드 API 호출 — 클라이언트에서 외부 API 직접 호출 안 함
+    Given 사용자가 GPS 권한을 허용한 상태이다
+    When 날씨를 조회한다
+    Then 클라이언트는 Next.js API Route(/api/weather)를 호출한다
+    And 외부 WeatherAPI 호출은 서버에서만 수행된다
