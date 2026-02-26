@@ -64,15 +64,9 @@ export const metadata: Metadata = {
 const FOUC_SCRIPT = `
 (function(){
   try {
-    var stored = localStorage.getItem('color-mode');
-    if (stored === 'light' || stored === 'dark') {
-      document.documentElement.setAttribute('data-color-mode', stored);
-    } else {
-      document.documentElement.setAttribute('data-color-mode', 'dark');
-    }
-  } catch(e) {
-    document.documentElement.setAttribute('data-color-mode', 'dark');
-  }
+    var m = localStorage.getItem('color-mode');
+  } catch(e) {}
+  document.documentElement.setAttribute('data-color-mode', m === 'light' ? 'light' : 'dark');
 })();
 `;
 
