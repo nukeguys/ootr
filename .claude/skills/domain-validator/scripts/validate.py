@@ -33,7 +33,7 @@ from typing import List, Dict, Set, Optional
 
 ALLOWED_STATUSES = {"confirmed", "TBD", "exploring", "deferred", "deprecated"}
 
-ALLOWED_PROP_TYPES = {"string", "integer", "number", "boolean", "datetime", "enum", "hashed"}
+ALLOWED_PROP_TYPES = {"string", "integer", "number", "boolean", "datetime", "enum", "hashed", "union", "entity_ref"}
 
 ALLOWED_REL_TYPES = {"has", "contains", "creates", "triggers", "belongs_to", "references", "requires", "depends_on"}
 
@@ -93,11 +93,32 @@ class ValidationResult:
         return sum(1 for i in self.issues if i.severity == "warning")
 
 
-def parse_prop_type(type_str: str) -> str:
-    """enum(OrderStatus) -> enum, string -> string"""
-    if isinstance(type_str, str) and type_str.startswith("enum("):
+def parse_prop_type(type_str: str, known_entities: Set[str]) -> str:
+    """타입 문자열을 정규화하여 허용 목록과 비교 가능한 형태로 변환
+
+    - enum(X) → enum
+    - string[] → string (배열의 원소 타입으로 검증)
+    - 'a' | 'b' → union (리터럴 유니온은 허용)
+    - OutfitSet 등 → entity_ref (같은 도메인 내 엔티티 참조는 허용)
+    """
+    if not isinstance(type_str, str):
+        return str(type_str)
+    s = type_str.strip()
+    if s.startswith("enum("):
         return "enum"
-    return str(type_str)
+    # 배열 타입: Type[] → 원소 타입으로 재귀 검증
+    if s.endswith("[]"):
+        return parse_prop_type(s[:-2], known_entities)
+    # union 리터럴: 따옴표 또는 파이프 포함
+    if "|" in s:
+        return "union"
+    # 엔티티 참조: 도메인에 정의된 엔티티 이름
+    if s in known_entities:
+        return "entity_ref"
+    # PascalCase이면 다른 도메인의 엔티티 참조로 간주
+    if s and s[0].isupper() and s.isidentifier():
+        return "entity_ref"
+    return s
 
 
 def is_known_rule_pattern(rule: str) -> bool:
@@ -184,7 +205,7 @@ def validate_domain_file(filepath: str, all_entities: Dict[str, Set[str]], resul
                     else:
                         prop_type_str = str(prop_type)
 
-                    base_type = parse_prop_type(prop_type_str)
+                    base_type = parse_prop_type(prop_type_str, local_entities)
                     if base_type and base_type != "???" and base_type not in ALLOWED_PROP_TYPES:
                         result.add("warning", filename,
                                    f"엔티티 '{name}'.props.{prop_name}의 타입 '{prop_type_str}'가 허용 목록에 없음")
