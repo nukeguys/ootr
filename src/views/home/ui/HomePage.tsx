@@ -15,7 +15,7 @@ export function HomePage() {
   );
 
   return (
-    <div className="w-full max-w-4xl mx-auto flex flex-col px-6 py-8 md:px-12 md:py-16 min-h-screen">
+    <div className="w-full max-w-4xl mx-auto flex flex-col p-6 md:px-12 md:py-16 min-h-screen">
       <WeatherSection />
       {recommendation ? (
         <>
