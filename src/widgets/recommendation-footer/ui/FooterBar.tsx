@@ -1,3 +1,7 @@
+'use client';
+
+import { trackEvent } from '@/shared/lib/analytics/trackEvent';
+
 export function FooterBar() {
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-border pt-8 pb-4">
@@ -12,6 +16,7 @@ export function FooterBar() {
           href="https://forms.gle/6aUFva3uDNnsB2Py9"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent('click_feedback')}
           className="text-accent opacity-40 hover:opacity-70 transition-opacity"
           aria-label="Feedback"
         >

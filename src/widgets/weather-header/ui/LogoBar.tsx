@@ -1,5 +1,6 @@
 import { RefreshIcon } from '@/shared/ui/icons/RefreshIcon';
 import { ColorModeToggle } from '@/features/color-mode';
+import { trackEvent } from '@/shared/lib/analytics/trackEvent';
 
 export function LogoBar() {
   return (
@@ -14,7 +15,10 @@ export function LogoBar() {
         <button
           className="text-accent hover:text-foreground transition-colors"
           aria-label="Refresh"
-          onClick={() => window.location.reload()}
+          onClick={() => {
+            trackEvent('click_refresh');
+            window.location.reload();
+          }}
         >
           <RefreshIcon className="size-[18px]" />
         </button>
