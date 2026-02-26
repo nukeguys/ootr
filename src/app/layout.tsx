@@ -29,8 +29,24 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ootr.kkick.xyz'),
   title: 'OOTR',
   description: '오늘 뭐 입지? - 날씨 기반 러닝 복장 추천 서비스',
+  openGraph: {
+    title: 'OOTR - 오늘 뭐 입지',
+    description: '날씨 기반 러닝 복장 추천 서비스',
+    url: 'https://ootr.kkick.xyz',
+    siteName: 'OOTR',
+    images: [{ url: '/icons/og-image.png', width: 1200, height: 630 }],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OOTR - 오늘 뭐 입지',
+    description: '날씨 기반 러닝 복장 추천 서비스',
+    images: ['/icons/og-image.png'],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
