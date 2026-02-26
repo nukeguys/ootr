@@ -7,7 +7,7 @@ domains:
 
   - name: recommendation
     description: '날씨 조건에 따른 러닝 복장 추천'
-    core_entities: [TemperatureZone, OutfitSet, Recommendation]
+    core_entities: [WardrobeItem, OutfitSet, Recommendation, RecommendationEngine]
     status: confirmed
     priority: 1
 
@@ -24,9 +24,9 @@ domain_connections:
       rel: triggers,
     }
   - {
-      from: recommendation.TemperatureZone,
-      to: recommendation.OutfitSet,
-      rel: has,
+      from: recommendation.RecommendationEngine,
+      to: recommendation.WardrobeItem,
+      rel: references,
     }
   - {
       from: recommendation.Recommendation,

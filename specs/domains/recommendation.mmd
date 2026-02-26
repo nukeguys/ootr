@@ -1,26 +1,24 @@
 erDiagram
-    TemperatureZoneConfig ||--o{ TemperatureZone : contains
-    TemperatureZone ||--|| OutfitSet : has
+    RecommendationEngine }o--o{ WardrobeItem : references
+    RecommendationEngine ||--|| Recommendation : creates
     Recommendation }o--|| OutfitSet : references
-    TemperatureZone {
+    WardrobeItem {
         string id
-        string label
-        number minTemp
-        number maxTemp
-        boolean isExtremeWarning
+        string name
+        enum category
+        string-array properties
     }
     OutfitSet {
-        string[] top
-        string[] bottom
-        string[] accessories
+        string-array top
+        string-array bottom
+        string-array accessories
     }
     Recommendation {
         OutfitSet outfitSet
         string reason
-        string[] warnings
+        string-array warnings
         boolean isExtremeWeather
         number createdAt
     }
-    TemperatureZoneConfig {
-        TemperatureZone[] zones
+    RecommendationEngine {
     }

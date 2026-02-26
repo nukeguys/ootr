@@ -68,5 +68,5 @@ entities:
 
 relationships:
   - { from: RecommendationEngine, to: WardrobeItem, type: references, card: 'N:M' }
-  - { from: RecommendationEngine, to: Recommendation, type: produces, card: '1:1' }
+  - { from: RecommendationEngine, to: Recommendation, type: creates, card: '1:1' }
   - { from: Recommendation, to: OutfitSet, type: references, card: 'N:1' }
