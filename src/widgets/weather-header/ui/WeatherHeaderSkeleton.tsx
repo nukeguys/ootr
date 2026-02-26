@@ -5,6 +5,7 @@ export function WeatherHeaderSkeleton() {
   return (
     <header className="w-full">
       <LogoBar />
+      <Skeleton className="w-24 h-3 mb-8 md:mb-12 ml-auto" />
       <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
         <div className="flex items-baseline gap-4">
           <Skeleton className="w-14 h-12 md:w-36 md:h-16" />
