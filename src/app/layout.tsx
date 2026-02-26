@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display, Noto_Sans_KR } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ColorModeProvider } from '@/features/color-mode';
 import { QueryProvider } from '@/shared/lib/QueryProvider';
+import { GoogleTagManager } from '@/shared/lib/analytics/GoogleTagManager';
 import { ServiceWorkerRegister } from '@/shared/ui/ServiceWorkerRegister';
 import './globals.css';
 
@@ -94,6 +97,9 @@ export default function RootLayout({
           <ColorModeProvider>{children}</ColorModeProvider>
         </QueryProvider>
         <ServiceWorkerRegister />
+        <Analytics />
+        <SpeedInsights />
+        <GoogleTagManager />
       </body>
     </html>
   );
