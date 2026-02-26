@@ -58,7 +58,6 @@ export function ColorModeProvider({ children }: { children: React.ReactNode }) {
     setMode(resolveColorMode());
   }, []);
 
-
   const toggleColorMode = useCallback(() => {
     const next = currentMode === 'light' ? 'dark' : 'light';
     localStorage.setItem('color-mode', next);
