@@ -20,13 +20,11 @@ const ColorModeContext = createContext<ColorModeContextValue | null>(null);
 function resolveColorMode(): ColorMode {
   const stored = localStorage.getItem('color-mode');
   if (stored === 'light' || stored === 'dark') return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
+  return 'dark';
 }
 
 // colorMode를 외부 스토어로 관리하여 SSR/hydration 불일치 없이 동기화
-let currentMode: ColorMode = 'light';
+let currentMode: ColorMode = 'dark';
 const listeners = new Set<() => void>();
 
 function getSnapshot(): ColorMode {
@@ -34,7 +32,7 @@ function getSnapshot(): ColorMode {
 }
 
 function getServerSnapshot(): ColorMode {
-  return 'light';
+  return 'dark';
 }
 
 function subscribe(listener: () => void): () => void {
@@ -60,16 +58,6 @@ export function ColorModeProvider({ children }: { children: React.ReactNode }) {
     setMode(resolveColorMode());
   }, []);
 
-  // 시스템 설정 변경 리스너 (수동 설정 시 무시)
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = (e: MediaQueryListEvent) => {
-      if (localStorage.getItem('color-mode') !== null) return;
-      setMode(e.matches ? 'dark' : 'light');
-    };
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
 
   const toggleColorMode = useCallback(() => {
     const next = currentMode === 'light' ? 'dark' : 'light';

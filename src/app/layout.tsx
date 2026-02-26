@@ -67,13 +67,11 @@ const FOUC_SCRIPT = `
     var stored = localStorage.getItem('color-mode');
     if (stored === 'light' || stored === 'dark') {
       document.documentElement.setAttribute('data-color-mode', stored);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.setAttribute('data-color-mode', 'dark');
     } else {
-      document.documentElement.setAttribute('data-color-mode', 'light');
+      document.documentElement.setAttribute('data-color-mode', 'dark');
     }
   } catch(e) {
-    document.documentElement.setAttribute('data-color-mode', 'light');
+    document.documentElement.setAttribute('data-color-mode', 'dark');
   }
 })();
 `;
