@@ -19,5 +19,5 @@ export function WeatherSection() {
     return null;
   }
 
-  return <WeatherHeader weather={weather} onRefresh={refetch} />;
+  return <WeatherHeader weather={weather} />;
 }
