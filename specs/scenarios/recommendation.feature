@@ -99,8 +99,8 @@ Feature: 러닝 복장 추천 엔진
     When 복장 추천이 생성된다
     Then 악세서리에 "반사 장비"가 포함된다
 
-  Scenario: feelsLike < 0 — 두꺼운 장갑
-    And 체감온도가 -2°C이다
+  Scenario: feelsLike < -4 — 두꺼운 장갑
+    And 체감온도가 -5°C이다
     When 복장 추천이 생성된다
     Then 악세서리에 "두꺼운 장갑"이 포함된다
 

@@ -60,7 +60,7 @@ export function recommend(weather: WeatherData): Recommendation {
   const accessories: string[] = [];
 
   if (feelsLike < -5) accessories.push('마스크');
-  if (feelsLike < 0) {
+  if (feelsLike < -4) {
     accessories.push('두꺼운 장갑');
   } else if (feelsLike < 10) {
     accessories.push('장갑');

@@ -60,7 +60,7 @@ entities:
       - |
         악세서리 (조건별 누적):
           feelsLike < -5: 마스크
-          feelsLike < 0: 두꺼운 장갑
+          feelsLike < -4: 두꺼운 장갑
           0 ≤ feelsLike < 10: 장갑
           isDay AND uvIndex > 3: 모자 + 선글라스
           야간(!isDay): 반사 장비

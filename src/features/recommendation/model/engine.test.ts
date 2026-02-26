@@ -184,14 +184,14 @@ describe('악세서리', () => {
     expect(result.outfitSet.accessories).toContain('두꺼운 장갑');
   });
 
-  it('feelsLike -5 이상 0 미만 → 두꺼운 장갑 포함, 마스크 없음', () => {
-    const result = recommend(makeWeather({ feelsLike: -2 }));
+  it('feelsLike -5 이상 -4 미만 → 두꺼운 장갑 포함, 마스크 없음', () => {
+    const result = recommend(makeWeather({ feelsLike: -5 }));
     expect(result.outfitSet.accessories).toContain('두꺼운 장갑');
     expect(result.outfitSet.accessories).not.toContain('마스크');
   });
 
-  it('0 ≤ feelsLike < 10 → 장갑 포함', () => {
-    const result = recommend(makeWeather({ feelsLike: 5 }));
+  it('-4 ≤ feelsLike < 10 → 장갑 포함', () => {
+    const result = recommend(makeWeather({ feelsLike: -2 }));
     expect(result.outfitSet.accessories).toContain('장갑');
     expect(result.outfitSet.accessories).not.toContain('두꺼운 장갑');
   });
