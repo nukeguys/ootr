@@ -20,7 +20,11 @@ export function HomePage() {
       {recommendation ? (
         <>
           <OutfitRecommendation outfitSet={recommendation.outfitSet} />
-          <RecommendationFooter reason={recommendation.reason} />
+          <RecommendationFooter
+            weather={weather!}
+            outfitSet={recommendation.outfitSet}
+            reason={recommendation.reason}
+          />
         </>
       ) : isLoading ? (
         <>
