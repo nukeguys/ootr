@@ -1,4 +1,5 @@
 import type { WeatherData } from '@/entities/weather';
+import type { AirQualityGrade } from '@/entities/weather';
 import type { Recommendation } from '@/entities/recommendation';
 import { topPresets } from '@/entities/recommendation/model/wardrobe';
 
@@ -19,6 +20,7 @@ function generateReason(
   hasRain: boolean,
   uvIndex: number,
   isDay: boolean,
+  airQuality: AirQualityGrade,
 ): string {
   const parts: string[] = [`체감온도 ${feelsLike}°C`];
 
@@ -26,6 +28,8 @@ function generateReason(
   if (hasRain) parts.push('강수 있음');
   if (isDay && uvIndex > 3) parts.push(`자외선 지수 ${uvIndex}`);
   if (!isDay) parts.push('야간');
+  if (airQuality === 'poor' || airQuality === 'bad')
+    parts.push('미세먼지 나쁨, 마스크 착용을 권장합니다');
 
   return `${parts.join(', ')} 기준으로 추천되었습니다.`;
 }
@@ -77,7 +81,7 @@ export function recommend(weather: WeatherData): Recommendation {
       bottom: [bottom],
       accessories,
     },
-    reason: generateReason(feelsLike, windSpeed, hasRain, uvIndex, isDay),
+    reason: generateReason(feelsLike, windSpeed, hasRain, uvIndex, isDay, weather.airQuality),
     warnings,
     isExtremeWeather,
     createdAt: Date.now(),

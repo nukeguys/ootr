@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useWeather } from './useWeather';
 
 vi.mock('axios');
-const mockedAxios = vi.mocked(axios);
+const mockedGet = vi.mocked(axios.get);
 
 const mockWeatherApiResponse = {
   location: { name: 'Seoul' },
@@ -18,6 +18,7 @@ const mockWeatherApiResponse = {
     uv: 3,
     is_day: 1,
     condition: { text: 'Clear Sky' },
+    air_quality: { pm2_5: 20, pm10: 35 },
   },
 };
 
@@ -59,12 +60,12 @@ function setupGeolocationDenied() {
 }
 
 function setupAxiosSuccess(data = mockWeatherApiResponse) {
-  mockedAxios.get.mockResolvedValue({ data });
+  mockedGet.mockResolvedValue({ data });
 }
 
 function setupAxiosError(message = '서버 오류') {
   const error = new Error(message);
-  mockedAxios.get.mockRejectedValue(error);
+  mockedGet.mockRejectedValue(error);
 }
 
 describe('useWeather', () => {
@@ -131,7 +132,7 @@ describe('useWeather', () => {
       ...mockWeatherApiResponse,
       current: { ...mockWeatherApiResponse.current, temp_c: 20 },
     };
-    mockedAxios.get.mockResolvedValue({ data: updatedResponse });
+    mockedGet.mockResolvedValue({ data: updatedResponse });
 
     await act(async () => {
       result.current.refetch();

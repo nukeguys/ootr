@@ -7,6 +7,15 @@ entities:
       - '브라우저 Geolocation API로 자동 감지'
       - 'GPS 권한 거부 시 권한 필요 안내 메시지 표시'
 
+  AirQualityGrade:
+    type: enum
+    values: ['good', 'fair', 'poor', 'bad']
+    rules:
+      - 'PM2.5 기준: 0–15 good, 16–50 fair, 51–100 poor, 101+ bad'
+      - 'PM10 기준: 0–30 good, 31–80 fair, 81–150 poor, 151+ bad'
+      - 'PM10/PM2.5 각각 산출 후 나쁜 쪽(높은 등급) 반환'
+      - "등급이 poor 또는 bad이면 추천 사유에 '미세먼지 나쁨, 마스크 착용을 권장합니다' 추가"
+
   WeatherData:
     props:
       temperature: number
@@ -19,8 +28,7 @@ entities:
       uvIndex: number
       isDay: boolean
       locationName: string
-      pm10: number
-      pm25: number
+      airQuality: AirQualityGrade
       updatedAt: number
     rules:
       - 'WeatherAPI current.json 엔드포인트에서 조회'
@@ -29,6 +37,7 @@ entities:
       - 'condition은 API 응답 문자열을 그대로 사용'
       - 'updatedAt은 timestamp(ms) — 화면 표시 시 변환'
       - 'aqi=yes 파라미터로 미세먼지 데이터 함께 조회'
+      - 'airQuality는 PM10/PM2.5 원시값에서 등급 산출하여 매핑'
 
 relationships:
   - { from: Location, to: WeatherData, type: triggers, card: '1:1' }

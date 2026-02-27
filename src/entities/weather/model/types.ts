@@ -1,3 +1,5 @@
+import type { AirQualityGrade } from '../lib/getAirQualityGrade';
+
 export interface WeatherData {
   temperature: number;
   feelsLike: number;
@@ -9,7 +11,6 @@ export interface WeatherData {
   uvIndex: number;
   isDay: boolean;
   locationName: string;
-  pm10: number;
-  pm25: number;
+  airQuality: AirQualityGrade;
   updatedAt: number;
 }

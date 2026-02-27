@@ -14,6 +14,7 @@ function makeWeather(overrides: Partial<WeatherData> = {}): WeatherData {
     uvIndex: 1,
     isDay: true,
     locationName: '테스트',
+    airQuality: 'good',
     updatedAt: 0,
     ...overrides,
   };
@@ -252,6 +253,28 @@ describe('극한 날씨 경고', () => {
   it('precipitation ≤ 3 → 강한 비/눈 경고 없음', () => {
     const result = recommend(makeWeather({ feelsLike: 10, precipitation: 2 }));
     expect(result.warnings.every((w) => !w.includes('강한 비/눈'))).toBe(true);
+  });
+});
+
+describe('미세먼지 주의 문구', () => {
+  it('airQuality poor → reason에 마스크 권장 문구 포함', () => {
+    const result = recommend(makeWeather({ airQuality: 'poor' }));
+    expect(result.reason).toContain('미세먼지 나쁨, 마스크 착용을 권장합니다');
+  });
+
+  it('airQuality bad → reason에 마스크 권장 문구 포함', () => {
+    const result = recommend(makeWeather({ airQuality: 'bad' }));
+    expect(result.reason).toContain('미세먼지 나쁨, 마스크 착용을 권장합니다');
+  });
+
+  it('airQuality good → reason에 마스크 권장 문구 없음', () => {
+    const result = recommend(makeWeather({ airQuality: 'good' }));
+    expect(result.reason).not.toContain('미세먼지');
+  });
+
+  it('airQuality fair → reason에 마스크 권장 문구 없음', () => {
+    const result = recommend(makeWeather({ airQuality: 'fair' }));
+    expect(result.reason).not.toContain('미세먼지');
   });
 });
 

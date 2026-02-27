@@ -73,10 +73,22 @@ describe('mapWeatherData', () => {
     expect(result.isSnow).toBe(false);
   });
 
-  it('PM10/PM2.5를 반올림하여 매핑한다', () => {
+  it('PM10/PM2.5에서 airQuality 등급을 산출한다', () => {
+    // pm10: 38.35 → fair (31–80), pm2.5: 35.65 → fair (16–50)
     const result = mapWeatherData(baseResponse);
-    expect(result.pm10).toBe(38);
-    expect(result.pm25).toBe(36);
+    expect(result.airQuality).toBe('fair');
+  });
+
+  it('PM2.5가 더 나쁘면 해당 등급을 반영한다', () => {
+    const response = {
+      ...baseResponse,
+      current: {
+        ...baseResponse.current,
+        air_quality: { pm2_5: 80, pm10: 20 },
+      },
+    };
+    const result = mapWeatherData(response);
+    expect(result.airQuality).toBe('poor');
   });
 
   it('updatedAt에 현재 timestamp를 설정한다', () => {

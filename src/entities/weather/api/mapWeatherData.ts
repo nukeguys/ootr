@@ -1,5 +1,6 @@
 import type { WeatherData } from '../model/types';
 import type { WeatherApiResponse } from './types';
+import { getAirQualityGrade } from '../lib/getAirQualityGrade';
 
 export function mapWeatherData(response: WeatherApiResponse): WeatherData {
   const { location, current } = response;
@@ -15,8 +16,7 @@ export function mapWeatherData(response: WeatherApiResponse): WeatherData {
     uvIndex: current.uv,
     isDay: current.is_day === 1,
     locationName: location.name,
-    pm10: Math.round(current.air_quality.pm10),
-    pm25: Math.round(current.air_quality.pm2_5),
+    airQuality: getAirQualityGrade(current.air_quality.pm10, current.air_quality.pm2_5),
     updatedAt: Date.now(),
   };
 }

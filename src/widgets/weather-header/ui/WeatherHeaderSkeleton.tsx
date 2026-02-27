@@ -37,13 +37,7 @@ export function WeatherHeaderSkeleton() {
           </div>
           <div className="flex flex-col">
             <span className="text-[10px] uppercase tracking-widest font-semibold text-accent mb-1">
-              PM10
-            </span>
-            <Skeleton className="w-14 h-5" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-accent mb-1">
-              PM2.5
+              Air
             </span>
             <Skeleton className="w-14 h-5" />
           </div>
