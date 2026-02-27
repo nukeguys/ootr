@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
   try {
     const { data } = await axios.get(
       'https://api.weatherapi.com/v1/current.json',
-      { params: { key: apiKey, q: `${latitude},${longitude}` } },
+      { params: { key: apiKey, q: `${latitude},${longitude}`, aqi: 'yes' } },
     );
     return NextResponse.json(data);
   } catch (error) {

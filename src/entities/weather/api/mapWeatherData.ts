@@ -15,6 +15,8 @@ export function mapWeatherData(response: WeatherApiResponse): WeatherData {
     uvIndex: current.uv,
     isDay: current.is_day === 1,
     locationName: location.name,
+    pm10: Math.round(current.air_quality.pm10),
+    pm25: Math.round(current.air_quality.pm2_5),
     updatedAt: Date.now(),
   };
 }

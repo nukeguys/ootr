@@ -11,5 +11,7 @@ export const mockWeatherData: WeatherData = {
   uvIndex: 3,
   isDay: true,
   locationName: 'Seoul',
+  pm10: 38,
+  pm25: 36,
   updatedAt: 1772010000000,
 };

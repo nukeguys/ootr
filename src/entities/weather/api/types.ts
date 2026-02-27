@@ -14,5 +14,9 @@ export interface WeatherApiResponse {
     condition: {
       text: string;
     };
+    air_quality: {
+      pm2_5: number;
+      pm10: number;
+    };
   };
 }

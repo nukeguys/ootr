@@ -9,5 +9,7 @@ export interface WeatherData {
   uvIndex: number;
   isDay: boolean;
   locationName: string;
+  pm10: number;
+  pm25: number;
   updatedAt: number;
 }

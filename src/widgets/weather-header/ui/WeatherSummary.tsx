@@ -45,6 +45,22 @@ export function WeatherSummary({ weather }: WeatherSummaryProps) {
             {weather.condition}
           </span>
         </div>
+        <div className="flex flex-col">
+          <span className="text-[10px] uppercase tracking-widest font-semibold text-accent mb-1">
+            PM10
+          </span>
+          <span className="text-sm md:text-base font-light">
+            {weather.pm10} <span className="text-[10px]">μg/m³</span>
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[10px] uppercase tracking-widest font-semibold text-accent mb-1">
+            PM2.5
+          </span>
+          <span className="text-sm md:text-base font-light">
+            {weather.pm25} <span className="text-[10px]">μg/m³</span>
+          </span>
+        </div>
       </div>
     </div>
   );

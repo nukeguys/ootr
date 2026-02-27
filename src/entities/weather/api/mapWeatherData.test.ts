@@ -14,6 +14,7 @@ describe('mapWeatherData', () => {
       uv: 3,
       is_day: 1,
       condition: { text: 'Clear' },
+      air_quality: { pm2_5: 35.65, pm10: 38.35 },
     },
   };
 
@@ -70,6 +71,12 @@ describe('mapWeatherData', () => {
   it('condition에 snow가 없으면 isSnow false', () => {
     const result = mapWeatherData(baseResponse);
     expect(result.isSnow).toBe(false);
+  });
+
+  it('PM10/PM2.5를 반올림하여 매핑한다', () => {
+    const result = mapWeatherData(baseResponse);
+    expect(result.pm10).toBe(38);
+    expect(result.pm25).toBe(36);
   });
 
   it('updatedAt에 현재 timestamp를 설정한다', () => {
