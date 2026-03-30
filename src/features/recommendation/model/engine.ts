@@ -23,15 +23,21 @@ function generateReason(
   airQuality: AirQualityGrade,
 ): string {
   const parts: string[] = [`체감온도 ${feelsLike}°C`];
+  const tips: string[] = [];
 
   if (windSpeed > 5) parts.push(`강풍 ${windSpeed.toFixed(1)}m/s`);
   if (hasRain) parts.push('강수 있음');
   if (isDay && uvIndex > 3) parts.push(`자외선 지수 ${uvIndex}`);
   if (!isDay) parts.push('야간');
-  if (airQuality === 'poor' || airQuality === 'bad')
-    parts.push('미세먼지 나쁨, 마스크 착용을 권장합니다');
+  if (airQuality === 'poor' || airQuality === 'bad') {
+    parts.push('미세먼지 나쁨');
+    tips.push('마스크 착용을 권장합니다');
+  }
 
-  return `${parts.join(', ')} 기준으로 추천되었습니다.`;
+  let reason = `${parts.join(', ')} 기준으로 추천되었습니다.`;
+  if (tips.length > 0) reason += ` ${tips.join(' ')}`;
+
+  return reason;
 }
 
 export function recommend(weather: WeatherData): Recommendation {
