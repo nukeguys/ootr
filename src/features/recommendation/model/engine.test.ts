@@ -1,6 +1,16 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
 import type { WeatherData } from '@/entities/weather';
 import { recommend } from './engine';
+
+beforeAll(() => {
+  vi.useFakeTimers();
+  // 계절 보정이 들어가지 않는 1월로 고정 (오프셋 0)
+  vi.setSystemTime(new Date('2026-01-15T12:00:00Z'));
+});
+
+afterAll(() => {
+  vi.useRealTimers();
+});
 
 function makeWeather(overrides: Partial<WeatherData> = {}): WeatherData {
   return {
