@@ -10,14 +10,14 @@ export function WeatherSummary({ weather }: WeatherSummaryProps) {
     <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
       <div className="flex items-baseline gap-4">
         <span className="text-5xl md:text-7xl font-extralight tracking-tighter">
-          {weather.temperature}°
+          {weather.temperature.toFixed(1)}°
         </span>
         <div className="flex flex-col">
           <span className="text-[10px] uppercase tracking-widest font-semibold text-accent">
             Feels Like
           </span>
           <span className="text-lg font-light italic">
-            {weather.feelsLike}°
+            {weather.feelsLike.toFixed(1)}°
           </span>
         </div>
       </div>
@@ -27,7 +27,7 @@ export function WeatherSummary({ weather }: WeatherSummaryProps) {
             Wind
           </span>
           <span className="text-sm md:text-base font-light">
-            {weather.windSpeed} <span className="text-[10px]">m/s</span>
+            {weather.windSpeed.toFixed(1)} <span className="text-[10px]">m/s</span>
           </span>
         </div>
         <div className="flex flex-col">
@@ -35,7 +35,7 @@ export function WeatherSummary({ weather }: WeatherSummaryProps) {
             Precip
           </span>
           <span className="text-sm md:text-base font-light">
-            {weather.precipitation} <span className="text-[10px]">mm</span>
+            {weather.precipitation.toFixed(1)} <span className="text-[10px]">mm</span>
           </span>
         </div>
         <div className="flex flex-col">

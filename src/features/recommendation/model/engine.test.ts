@@ -259,12 +259,14 @@ describe('극한 날씨 경고', () => {
 describe('미세먼지 주의 문구', () => {
   it('airQuality poor → reason에 마스크 권장 문구 포함', () => {
     const result = recommend(makeWeather({ airQuality: 'poor' }));
-    expect(result.reason).toContain('미세먼지 나쁨, 마스크 착용을 권장합니다');
+    expect(result.reason).toContain('미세먼지 나쁨');
+    expect(result.reason).toContain('마스크 착용을 권장합니다');
   });
 
   it('airQuality bad → reason에 마스크 권장 문구 포함', () => {
     const result = recommend(makeWeather({ airQuality: 'bad' }));
-    expect(result.reason).toContain('미세먼지 나쁨, 마스크 착용을 권장합니다');
+    expect(result.reason).toContain('미세먼지 나쁨');
+    expect(result.reason).toContain('마스크 착용을 권장합니다');
   });
 
   it('airQuality good → reason에 마스크 권장 문구 없음', () => {

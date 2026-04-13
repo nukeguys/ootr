@@ -1,22 +1,3 @@
-// WeatherAPI current.json 응답에서 사용하는 필드만 정의
-export interface WeatherApiResponse {
-  location: {
-    name: string;
-  };
-  current: {
-    temp_c: number;
-    feelslike_c: number;
-    precip_mm: number;
-    wind_kph: number;
-    humidity: number;
-    uv: number;
-    is_day: number;
-    condition: {
-      text: string;
-    };
-    air_quality: {
-      pm2_5: number;
-      pm10: number;
-    };
-  };
-}
+// WeatherAPI.com 원시 응답 타입 — providers/weatherapi.ts 내부에서만 사용
+// 통합 응답 타입은 unified/types.ts의 UnifiedWeatherResponse 사용
+export type { UnifiedWeatherResponse as WeatherApiResponse } from './unified/types';

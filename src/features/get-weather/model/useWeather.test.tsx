@@ -7,23 +7,29 @@ import { useWeather } from './useWeather';
 vi.mock('axios');
 const mockedGet = vi.mocked(axios.get);
 
-const mockWeatherApiResponse = {
+// 통합 응답 포맷 mock
+const mockUnifiedResponse = {
   location: { name: 'Seoul' },
-  current: {
-    temp_c: 17,
-    feelslike_c: 14,
-    precip_mm: 0,
-    wind_kph: 8,
-    humidity: 45,
-    uv: 3,
-    is_day: 1,
-    condition: { text: 'Clear Sky' },
-    air_quality: { pm2_5: 20, pm10: 35 },
-  },
+  temperature: 17,
+  feelsLike: 14,
+  windSpeed: 2,
+  humidity: 45,
+  precipitation: 0,
+  condition: '맑음',
+  isSnow: false,
+  uvIndex: 3,
+  isDay: true,
+  airQuality: { pm10: 35, pm2_5: 20 },
 };
 
 // Geolocation mock
 const mockGetCurrentPosition = vi.fn();
+
+// IDB mock
+vi.mock('@/entities/location', () => ({
+  saveLastLocation: vi.fn(),
+  loadLastLocation: vi.fn().mockResolvedValue(null),
+}));
 
 function createWrapper() {
   const queryClient = new QueryClient({
@@ -59,7 +65,7 @@ function setupGeolocationDenied() {
   });
 }
 
-function setupAxiosSuccess(data = mockWeatherApiResponse) {
+function setupAxiosSuccess(data = mockUnifiedResponse) {
   mockedGet.mockResolvedValue({ data });
 }
 
@@ -86,19 +92,21 @@ describe('useWeather', () => {
     expect(result.current.error).toBeNull();
   });
 
-  it('위치 권한 거부 시 에러 메시지를 반환한다', async () => {
+  it('위치 권한 거부 시 기본 위치(서울)로 폴백하여 날씨를 조회한다', async () => {
     setupGeolocationDenied();
+    setupAxiosSuccess();
 
     const { result } = renderHook(() => useWeather(), {
       wrapper: createWrapper(),
     });
 
     await waitFor(() => {
-      expect(result.current.error).toBe('위치 권한이 필요합니다');
+      expect(result.current.weather).not.toBeNull();
     });
 
-    expect(result.current.weather).toBeNull();
-    expect(result.current.isLoading).toBe(false);
+    // 서울 폴백으로 날씨 조회 성공
+    expect(result.current.weather!.temperature).toBe(17);
+    expect(result.current.isDefaultLocation).toBe(true);
   });
 
   it('API 에러 시 에러 메시지를 반환한다', async () => {
@@ -116,7 +124,7 @@ describe('useWeather', () => {
     expect(result.current.weather).toBeNull();
   });
 
-  it('refetch 호출 시 날씨를 다시 조회한다', async () => {
+  it('setLocation 호출 시 해당 좌표로 날씨를 다시 조회한다', async () => {
     setupGeolocationSuccess();
     setupAxiosSuccess();
 
@@ -129,13 +137,14 @@ describe('useWeather', () => {
     });
 
     const updatedResponse = {
-      ...mockWeatherApiResponse,
-      current: { ...mockWeatherApiResponse.current, temp_c: 20 },
+      ...mockUnifiedResponse,
+      temperature: 20,
+      location: { name: '강남구, 서울특별시' },
     };
     mockedGet.mockResolvedValue({ data: updatedResponse });
 
     await act(async () => {
-      result.current.refetch();
+      result.current.setLocation(37.498, 127.028, '강남구');
     });
 
     await waitFor(() => {

@@ -1,22 +1,20 @@
 import type { WeatherData } from '../model/types';
-import type { WeatherApiResponse } from './types';
+import type { UnifiedWeatherResponse } from './unified/types';
 import { getAirQualityGrade } from '../lib/getAirQualityGrade';
 
-export function mapWeatherData(response: WeatherApiResponse): WeatherData {
-  const { location, current } = response;
-
+export function mapWeatherData(response: UnifiedWeatherResponse): WeatherData {
   return {
-    temperature: Math.round(current.temp_c),
-    feelsLike: Math.round(current.feelslike_c),
-    precipitation: Math.round(current.precip_mm),
-    isSnow: current.condition.text.toLowerCase().includes('snow'),
-    windSpeed: Math.round(current.wind_kph / 3.6),
-    humidity: current.humidity,
-    condition: current.condition.text,
-    uvIndex: current.uv,
-    isDay: current.is_day === 1,
-    locationName: location.name,
-    airQuality: getAirQualityGrade(current.air_quality.pm10, current.air_quality.pm2_5),
+    temperature: response.temperature,
+    feelsLike: response.feelsLike,
+    precipitation: response.precipitation,
+    isSnow: response.isSnow,
+    windSpeed: response.windSpeed,
+    humidity: response.humidity,
+    condition: response.condition,
+    uvIndex: response.uvIndex,
+    isDay: response.isDay,
+    locationName: response.location.name,
+    airQuality: getAirQualityGrade(response.airQuality.pm10, response.airQuality.pm2_5),
     updatedAt: Date.now(),
   };
 }

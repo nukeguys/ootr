@@ -16,6 +16,8 @@ vi.mock('@/features/get-weather', () => ({
     weather: mockWeatherData,
     isLoading: false,
     error: null,
+    isDefaultLocation: false,
+    setLocation: vi.fn(),
     refetch: vi.fn(),
   }),
 }));
@@ -34,6 +36,23 @@ vi.mock('@/features/recommendation', () => ({
   }),
 }));
 
+// search-location mock
+vi.mock('@/features/search-location', () => ({
+  useLocationSearch: () => ({
+    query: '',
+    setQuery: vi.fn(),
+    results: [],
+    isLoading: false,
+  }),
+  LocationSearchDialog: () => <div data-testid="location-search-dialog" />
+}));
+
+// IDB mock
+vi.mock('@/entities/location', () => ({
+  saveLastLocation: vi.fn(),
+  loadLastLocation: vi.fn().mockResolvedValue(null),
+}));
+
 describe('Home', () => {
   it('OOTR 로고가 렌더링된다', () => {
     render(<Home />);
@@ -42,8 +61,8 @@ describe('Home', () => {
 
   it('날씨 정보가 표시된다', () => {
     render(<Home />);
-    expect(screen.getByText('17°')).toBeInTheDocument();
-    expect(screen.getByText('14°')).toBeInTheDocument();
+    expect(screen.getByText('17.0°')).toBeInTheDocument();
+    expect(screen.getByText('14.0°')).toBeInTheDocument();
     expect(screen.getByText('Clear Sky')).toBeInTheDocument();
   });
 
